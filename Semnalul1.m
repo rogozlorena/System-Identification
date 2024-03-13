@@ -28,7 +28,7 @@ C=[1,0]
 D=[0]
 sys=ss(A,B,C,D);
 ysim=lsim(sys,u,t,[y1(1),(y1(2)-y1(1))/(t(2)-t(1))]);
-% in [ primul element si derivata]
+
 figure 
 plot(t,y1,t,ysim)
 J=norm(y1-ysim)/sqrt(length(y1)) %eroare medie patratica
@@ -42,10 +42,10 @@ eMPN=norm(y1-ysim)/norm(y1-mean(y1))*100%eroare medie patratica normalizata
  i7=337;
  i8=349;
 
-dt=t(i7)-t(i5)%timpul dintre maximul de la intrare si maximul de la iesire
+dt=t(i7)-t(i5)
 Tn=2*(t(i8)-t(i7))
 wn3=2*pi/Tn
-ph=dt*wn3*180/pi % defazajul in grade
+ph=dt*wn3*180/pi 
 
 
 M1=(y1(i5)-y1(i6))/(u(i7)-u(i8))/k 
@@ -93,13 +93,13 @@ Hz = tf(Marmax.B, Marmax.A, dt) %functie de transfer in z sau modelul in discret
 Hs = d2c(Hz, 'zoh')%functie de transfer in continu
 
 %% 
-%Mpem = pem(d_id, 2) las asa? sau a doua varianta?
+%Mpem = pem(d_id, 2) 
 Marx_pem=pem(Marx,d_id)
 figure
 resid(d_id, Marx_pem)
 figure
 compare(d_id, Marx,Marmax,Mvi,Moe,Marx_pem)
-%% metoda de minimizare a err de pred obtinut cu n4sid(trebe sa dea autocorelatia)
+%% metoda de minimizare a err de pred obtinut cu n4sid
 n4sid(d_id, 1:10)
 Mn4sid=n4sid(d_id,2)
 figure
